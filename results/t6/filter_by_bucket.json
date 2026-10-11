@@ -1,0 +1,47 @@
+{
+ "lateral": {
+  "n": 60,
+  "dropped_pct": 40.0,
+  "r8_label_error_pct": 66.7
+ },
+ "two_point": {
+  "n": 357,
+  "dropped_pct": 20.2,
+  "r8_label_error_pct": 12.3
+ },
+ "fumble": {
+  "n": 1379,
+  "dropped_pct": 16.0,
+  "r8_label_error_pct": 22.0
+ },
+ "penalty_stands": {
+  "n": 2191,
+  "dropped_pct": 8.9,
+  "r8_label_error_pct": 12.5
+ },
+ "normal": {
+  "n": 83699,
+  "dropped_pct": 4.1,
+  "r8_label_error_pct": 2.1
+ },
+ "challenge": {
+  "n": 989,
+  "dropped_pct": 3.2,
+  "r8_label_error_pct": 3.4
+ },
+ "interception": {
+  "n": 1111,
+  "dropped_pct": 0.6,
+  "r8_label_error_pct": 0.3
+ },
+ "td": {
+  "n": 3346,
+  "dropped_pct": 0.4,
+  "r8_label_error_pct": 0.4
+ },
+ "penalty_nullified": {
+  "n": 6828,
+  "dropped_pct": 0.0,
+  "r8_label_error_pct": 0.2
+ }
+}

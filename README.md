@@ -13,8 +13,8 @@ fantasy stat credits as JSON. A deterministic scorer turns those credits into ex
 fantasy points. nflverse data provides exact ground truth, so every number here is an
 exact match, with no LLM judge involved.
 
-> **Status (2026-10-10): complete.** Every experiment in the PRD has run on PACE GPUs
-> (A100 / L40S / H100) except the two that need an Anthropic API key (T2, T6). 751 fast
+> **Status (2026-10-11): complete.** Every experiment in the PRD has run, on PACE GPUs
+> (A100 / L40S / H100) and, for the frontier and teacher rungs, the OpenAI API ($160 total). 751 fast
 > tests + 52 slow/GPU tests. Every claim below had its pass condition written down
 > before its run, and every number links to a committed artifact.
 
@@ -49,7 +49,8 @@ exact match, with no LLM judge involved.
    throughput from 1 to 256 adapters. But vLLM is ~11× faster in absolute throughput
    (≈2.3 vs ≈60 ms per token): Python-loop attention, no CUDA graphs, and unfused LoRA
    kernels. See [`L7`](docs/phases/L7.md) and [`p5b-cuda`](docs/benchmarks/p5b-cuda.md).
-7. **Gate releases per bucket, not on the average.** A deliberately broken adapter
+7. **Distillation is capped by the teacher's hard-case errors.** Students trained on 100k gpt-5.4-mini labels reach ~96.5–96.8% vs 98.1% on true labels. Rejection filtering raises label precision from 97.5% to 99.2% but drops the hard plays the teacher gets wrong, so it recovers at most 31% of the gap. See [`t6-distillation`](docs/benchmarks/t6-distillation.md).
+8. **Gate releases per bucket, not on the average.** A deliberately broken adapter
    cleared a 95% overall floor and was still refused for 8–12-point drops on hard
    buckets. See [`P6-gate-demo`](docs/phases/P6-gate-demo.md).
 
@@ -66,7 +67,7 @@ with the same detail as earned ones.
 | T3b | Spot decomposition beats the regex (pre-registered, PRD §17) | **Not earned**: 99.73% vs regex 99.79% and regex + LOS 99.90% on the frozen test set. But it beats R5 by +0.18 [+0.12, +0.25] and fixes penalty_stands (93.5 → 100) | [t3b-test](docs/benchmarks/t3b-test.md) |
 | T4 | QLoRA costs little quality | **Earned (A100)**: 98.1% vs R5 98.5% on eval_lite (−0.4, limit 1.0); ~2% slower steps | [benchmarks](docs/BENCHMARKS.md) |
 | T5 | LoRA matches full fine-tuning | **LoRA beat it**: R5 98.5% vs full fine-tune (R7) 97.35% on eval_lite, paired +1.18 [+0.43, +2.12] for LoRA. Caveats: one run each; the full fine-tune's LR (2e-5) was a standard default, not tuned | [benchmarks](docs/BENCHMARKS.md) |
-| T6 | Filtering recovers distillation quality | Pending (B2); pipeline built and tested | [P4 pipeline](docs/phases/P4-distill-pipeline.md) |
+| T6 | Filtering recovers distillation quality | **Not earned**: rejection filtering closes at most 31% of the teacher-vs-truth gap (5k), 20% at 100k. Teacher errors concentrate in the hard buckets and the filter drops exactly those plays | [t6-distillation](docs/benchmarks/t6-distillation.md) |
 | T7 | Fine-tuning causes little forgetting | **Earned (A100)**: MMLU base 31.1% vs R5 32.3% (no drop; limit was −2.0), threshold committed before the code | [T7](docs/phases/T7.md) |
 | L1 | Merged adapter adds no latency | **Earned (H100)**: merged r=16 −0.07% vs base, inside base-vs-base noise | [p5a CUDA bench](results/p5a/bench_cuda_20261008_224151.json) |
 | L2 | Merged equals unmerged | **Earned (local + H100)**: identical greedy tokens on all paths | [p5a-local](docs/benchmarks/p5a-local.md) |
