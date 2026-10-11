@@ -496,7 +496,7 @@ The parts that decide whether a number means anything:
 ## Setup
 
 ```bash
-git clone https://github.com/ashwinvijayakumar24/lora_finetuning.git llm_finetuning
+git clone https://github.com/ashwinvijayakumar24/lora_finetuning_nfl.git llm_finetuning
 cd llm_finetuning
 python -m venv --system-site-packages .venv && .venv/bin/pip install -e '.[dev]'
 
