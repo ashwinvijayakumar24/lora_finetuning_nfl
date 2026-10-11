@@ -33,7 +33,7 @@ that change.
 
 ## Why it matters later
 
-A merged PlayParse model saved with `save_pretrained` under transformers 5 (for
+A merged NFL Football Fine-Tuning model saved with `save_pretrained` under transformers 5 (for
 example to serve it with vLLM or to keep it as a checkpoint) will have the same
 problem if anyone points the engine at it. Any such export should copy the base
 model's `config.json`, or apply the same patch.

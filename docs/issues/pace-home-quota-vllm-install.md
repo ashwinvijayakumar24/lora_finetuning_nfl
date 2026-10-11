@@ -9,6 +9,6 @@ jobs that write logs there. Both directories were deleted at once (home back to 
 20 GB).
 
 **Fix:** an existing vLLM 0.31.0 env already lives in project storage
-(`~/ps-simpliearn-0/envs/vllm`). The L7 job activates it read-only and finds PlayParse
+(`~/ps-simpliearn-0/envs/vllm`). The L7 job activates it read-only and finds NFL Football Fine-Tuning
 via `PYTHONPATH` instead of `pip install`-ing into it. Lesson: on PACE, conda envs and
 pip caches belong in project storage (1 TB), never `$HOME`.

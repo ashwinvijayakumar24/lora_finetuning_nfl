@@ -1,4 +1,4 @@
-# PRD — PlayParse: fine-tuning and serving a fantasy-football play parser
+# PRD — NFL Football Fine-Tuning: fine-tuning and serving a fantasy-football play reader
 
 **Status:** draft · **Owner:** Ashwin · **Last updated:** 2026-10-04
 **Base model:** Llama 3.2 1B Instruct · **Compute:** Apple M4 (correctness), PACE H100 (training and benchmarks)
@@ -7,7 +7,7 @@
 
 ## 1. Summary
 
-PlayParse teaches Llama 3.2 1B to read raw NFL play-by-play text and output the
+NFL Football Fine-Tuning teaches Llama 3.2 1B to read raw NFL play-by-play text and output the
 fantasy-relevant stats in it: who gained yards, who caught the ball, who scored, who
 fumbled. A deterministic scorer then turns those stats into exact fantasy points
 under any scoring system.
@@ -346,7 +346,7 @@ y = x·Wᵀ                        ← shared base matmul (unchanged)
   prefix computed under adapter A gets reused for adapter B. Hidden states differ per
   adapter, so that reuse would be a silent correctness bug.
 - **Adapters available for traffic:**
-  - The real NFL PlayParse adapter, in several registry versions.
+  - The real NFL fine-tuned adapter, in several registry versions.
   - Optionally a college-football variant trained on cfbfastR play-by-play. That is a
     different text format, so it is a genuinely different adapter. Verify the data's
     availability first.

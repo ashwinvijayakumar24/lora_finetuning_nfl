@@ -1,6 +1,6 @@
 # P5a: the engine's `linear()` does not know which layer it is serving
 
-**Status:** worked around in PlayParse; worth an engine change before P5b's fast kernels.
+**Status:** worked around in NFL Football Fine-Tuning; worth an engine change before P5b's fast kernels.
 
 ## What happened
 
@@ -18,7 +18,7 @@ Two smaller facts make the picture complete:
   `swiglu_ffn`.
 - The torch path's LM head is `last @ w["lm_head.weight"].T` in `model_gpu.py`,
   outside `linear()`. An unmerged adapter on `lm_head` could not go through the
-  chokepoint even with module identity. PlayParse rejects `lm_head` targets anyway.
+  chokepoint even with module identity. NFL Football Fine-Tuning rejects `lm_head` targets anyway.
 
 ## How it was found
 
@@ -31,7 +31,7 @@ The chokepoint was designed for weight quantization. Quantization is a property
 of the weight itself, so the weight object was enough. LoRA is a property of
 (weight, request), so it needs extra context.
 
-## Fix (in PlayParse, no engine edit)
+## Fix (in NFL Football Fine-Tuning, no engine edit)
 
 - The adapter rides on the weight object. `LoRALinear` replaces each targeted
   entry in the model's weight dict and holds the base weight (plain fp16 or a

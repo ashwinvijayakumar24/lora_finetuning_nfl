@@ -1,6 +1,6 @@
 # P5b: the serving layer's scheduler has no hook between "batch chosen" and "forward pass"
 
-**Status:** worked around in PlayParse with a checked hook; minimal upstream patch proposed below.
+**Status:** worked around in NFL Football Fine-Tuning with a checked hook; minimal upstream patch proposed below.
 
 ## What happened
 
@@ -27,7 +27,7 @@ code.
 The scheduler was built for one model with no per-request state beyond tokens.
 Everything a forward pass needed was already in `BatchMeta`.
 
-## Workaround (in PlayParse, no upstream edit)
+## Workaround (in NFL Football Fine-Tuning, no upstream edit)
 
 `AdapterScheduler` (`playparse/serving/adapter_scheduler.py`):
 

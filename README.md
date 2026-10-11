@@ -1,4 +1,4 @@
-# PlayParse — Fine-Tuning a 1B Model to Read NFL Play-by-Play, and Serving It as One of Many Adapters
+# NFL Football Fine-Tuning: Teaching Llama 3.2 1B to Turn Play-by-Play Text into Fantasy Stats with LoRA, and Serving Many Fine-Tuned Adapters at Once
 
 A LoRA fine-tuning and multi-adapter serving study built on the from-scratch
 [`llm_inference_engine`](https://github.com/ashwinvijayakumar24/llm_inference_engine) and

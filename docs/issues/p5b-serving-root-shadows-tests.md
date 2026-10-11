@@ -18,7 +18,7 @@ this repository's:
 Python's import system prefers a regular package anywhere on `sys.path` over
 a namespace package, even one found earlier. So once the serving root was on
 the path, `import tests` returned the serving layer's test package, and
-`from tests._lora_util import ...` (used by four existing PlayParse test
+`from tests._lora_util import ...` (used by four existing NFL Football Fine-Tuning test
 files) failed with `ModuleNotFoundError`. Whether it failed depended on test
 collection order: if anything imported `tests` before the serving root was
 added, the namespace package was already cached and everything passed.
@@ -62,7 +62,7 @@ and never edit `sys.path`: `_engine_path.register_package("engine", root)` and,
 in `_serving_path`, the same for `serving` and `bench`. Submodule imports such
 as `serving.scheduler.scheduler` resolve through the package's own `__path__`.
 None of the three packages imports anything else from its repository root
-(checked with a grep over `serving/`, `bench/` and PlayParse's own code). The
+(checked with a grep over `serving/`, `bench/` and NFL Football Fine-Tuning's own code). The
 P5b tests also import their helper as a top-level module (`from _p5b_util
 import ...`), which pytest's default import mode provides from `tests/`.
 
@@ -72,5 +72,5 @@ import ...`), which pytest's default import mode provides from `tests/`.
 asserts that after `ensure_serving_importable()` the serving layer's root is
 not on `sys.path` and that `serving`/`bench` resolve to the serving layer.
 (The engine root is not asserted absent: an environment with a legacy
-editable install of the engine puts it there independently of PlayParse.) `pytest tests/test_p5b_pool.py tests/test_lora_io.py` is the
+editable install of the engine puts it there independently of NFL Football Fine-Tuning.) `pytest tests/test_p5b_pool.py tests/test_lora_io.py` is the
 order that used to fail.

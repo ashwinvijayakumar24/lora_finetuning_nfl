@@ -4,7 +4,7 @@
 spot-check · **Frozen eval:** `test.jsonl`, sha256
 `13d0d714f5abc9e3e8869e6dfab87f6becaf25ba2d15e1f281af68299553038c`
 
-This page explains how every play in the PlayParse dataset got its label, why each
+This page explains how every play in the NFL Football Fine-Tuning dataset got its label, why each
 rule is the way it is, how the labels were checked, and what is still known to be
 imperfect. The eval harness and baselines (R0–R4) are the other half of P1 and are
 not covered here.

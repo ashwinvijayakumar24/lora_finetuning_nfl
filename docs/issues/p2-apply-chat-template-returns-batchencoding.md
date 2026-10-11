@@ -19,7 +19,7 @@ Inspecting the tokenizer before writing `collate.py`.
 
 ## Fix
 
-PlayParse never tokenizes through `apply_chat_template`. `encode_prompt` renders
+NFL Football Fine-Tuning never tokenizes through `apply_chat_template`. `encode_prompt` renders
 the template to a string (`tokenize=False`) and then tokenizes the string with
 `add_special_tokens=False`. One code path, the same result on every version.
 
